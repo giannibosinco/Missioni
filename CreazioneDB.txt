@@ -1,0 +1,11 @@
+Per creare le classi di EF
+
+
+installare  tramite nuget
+Microsoft.EntityFrameworkCore.Design 
+Microsoft.EntityFrameworkCore.Tools 
+
+Nel Package Manager Console digitare
+
+
+Scaffold-DbContext "Host=localhost;Database=sipecdb;Username=postgres;Password=Pwd@gbos69" Npgsql.EntityFrameworkCore.PostgreSQL -o Models -schema Missioni -f

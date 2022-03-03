@@ -10,6 +10,10 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using System.IO;
 using Microsoft.AspNetCore.Mvc.Versioning;
+using Microsoft.EntityFrameworkCore;
+using Persistenza.Models;
+using DomainModel.Common;
+using Persistenza;
 
 namespace RockApi
 {
@@ -75,6 +79,15 @@ namespace RockApi
 
             // FINE versionamento dei servizi
 
+
+            // Connessione al DB
+            services.AddDbContext<missioniDbContext>(options =>
+                    options.UseNpgsql(Configuration.GetConnectionString("MissioniconnectionString")));
+
+
+            // DI per i servizi al DB
+
+            services.AddScoped<IDbMethods, DbMethods>();
 
             IntegrateSimpleInjector(services);
         }
