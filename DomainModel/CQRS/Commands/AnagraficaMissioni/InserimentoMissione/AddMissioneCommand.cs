@@ -1,17 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
-#nullable disable
-
-namespace Persistenza.Models
+namespace DomainModel.CQRS.Commands.AnagraficaMissioni.InserimentoMissione
 {
-    public partial class Missioni
+    public class AddMissioneCommand
     {
-        public Missioni()
-        {
-            MissioniDipendentis = new HashSet<MissioniDipendenti>();
-        }
-
         public Guid IdMissione { get; set; }
         public Guid? CodSedeMissione { get; set; }
         public Guid IdAnagraficaTipiMissione { get; set; }
@@ -35,9 +29,5 @@ namespace Persistenza.Models
         public DateTime? DtIns { get; set; }
         public string User { get; set; }
 
-        //public virtual AnagraficaTipiMissione IdAnagraficaTipiMissioneNavigation { get; set; }
-        public virtual CausaliMissione IdCausaliMissioneNavigation { get; set; }
-        public virtual TipologieMissione IdTipologiaMissioneNavigation { get; set; }
-        public virtual ICollection<MissioniDipendenti> MissioniDipendentis { get; set; }
     }
 }

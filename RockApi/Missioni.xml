@@ -1,9 +1,20 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>Missioni</name>
+        <name>MissioniBE</name>
     </assembly>
     <members>
+        <member name="T:MissioniBE.Controllers.CausaliMissioneController">
+            <summary>
+            Servizi per la tipologica CausaliMissione
+            </summary>
+        </member>
+        <member name="M:MissioniBE.Controllers.CausaliMissioneController.Get">
+            <summary>
+            Servizio per il recupero delle causali missione
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:RockApi.Controllers.IntSumCalculatorController">
             <summary>
             Questo è un esempio di commento per il controller

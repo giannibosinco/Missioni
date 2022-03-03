@@ -89,6 +89,7 @@ namespace RockApi
 
             services.AddScoped<IDbMethods, DbMethods>();
 
+
             IntegrateSimpleInjector(services);
         }
 
@@ -112,7 +113,7 @@ namespace RockApi
                 // Optionally, allow application components to depend on the non-generic ILogger
                 // (Microsoft.Extensions.Logging) or IStringLocalizer
                 // (Microsoft.Extensions.Localization) abstractions.
-                options.AddLogging();
+               // options.AddLogging();
             });
 
             InitializeContainer();
@@ -163,7 +164,7 @@ namespace RockApi
             //app.UseMiddleware<CustomMiddleware1>(container);
             //app.UseMiddleware<CustomMiddleware2>(container);
 
-            LogConfigurator.Configure();
+            //LogConfigurator.Configure();
 
             container.Verify();
         }

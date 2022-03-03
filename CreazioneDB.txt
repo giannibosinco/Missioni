@@ -1,7 +1,5 @@
-Per creare le classi di EF
+Per creare le classi di EF  installare  tramite nuget
 
-
-installare  tramite nuget
 Microsoft.EntityFrameworkCore.Design 
 Microsoft.EntityFrameworkCore.Tools 
 

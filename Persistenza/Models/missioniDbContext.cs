@@ -173,11 +173,11 @@ namespace Persistenza.Models
                     .HasMaxLength(40)
                     .HasColumnName("user");
 
-                entity.HasOne(d => d.IdAnagraficaTipiMissioneNavigation)
-                    .WithMany(p => p.Missionis)
-                    .HasForeignKey(d => d.IdAnagraficaTipiMissione)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("Missioni_FK2");
+                //entity.HasOne(d => d.IdAnagraficaTipiMissioneNavigation)
+                //    .WithMany(p => p.Missionis)
+                //    .HasForeignKey(d => d.IdAnagraficaTipiMissione)
+                //    .OnDelete(DeleteBehavior.ClientSetNull)
+                //    .HasConstraintName("Missioni_FK2");
 
                 entity.HasOne(d => d.IdCausaliMissioneNavigation)
                     .WithMany(p => p.Missionis)

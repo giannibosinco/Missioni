@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29509.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Missioni", "RockApi\Missioni.csproj", "{54959FA1-8A7B-475D-8FB6-F6D6A0A70307}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MissioniBE", "RockApi\MissioniBE.csproj", "{54959FA1-8A7B-475D-8FB6-F6D6A0A70307}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DomainModel", "DomainModel\DomainModel.csproj", "{0E7542D5-4A7F-4F04-B2E5-2A69DE4B3EFC}"
 EndProject

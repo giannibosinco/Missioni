@@ -1,18 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Threading.Tasks;
 
-#nullable disable
-
-namespace Persistenza.Models
+namespace MissioniBE.DTO
 {
-    public partial class Missioni
+    public class AddMissioneCommand_DTO
     {
-        public Missioni()
-        {
-            MissioniDipendentis = new HashSet<MissioniDipendenti>();
-        }
-
-        public Guid IdMissione { get; set; }
         public Guid? CodSedeMissione { get; set; }
         public Guid IdAnagraficaTipiMissione { get; set; }
         public DateTime DataOraInizioMissione { get; set; }
@@ -28,16 +23,10 @@ namespace Persistenza.Models
         public long? CodEvento { get; set; }
         public bool FlProv { get; set; }
         public bool? FlSedeVvf { get; set; }
+        [Required]
         public long? IdCausaliMissione { get; set; }
         public DateTime? DataInizioMissione { get; set; }
-        public DateTime DtInizioValidita { get; set; }
-        public DateTime? DtFineValidita { get; set; }
-        public DateTime? DtIns { get; set; }
         public string User { get; set; }
 
-        //public virtual AnagraficaTipiMissione IdAnagraficaTipiMissioneNavigation { get; set; }
-        public virtual CausaliMissione IdCausaliMissioneNavigation { get; set; }
-        public virtual TipologieMissione IdTipologiaMissioneNavigation { get; set; }
-        public virtual ICollection<MissioniDipendenti> MissioniDipendentis { get; set; }
     }
 }
