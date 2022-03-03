@@ -18,5 +18,23 @@
             </remarks>
             <param name="query"></param>
         </member>
+        <member name="M:RockApi.Controllers.IntSumCalculatorController.GetV2">
+            <summary>
+            Questo è un esempio di commento per un servizio
+            </summary>
+            <remarks>
+            Se necessario, si possono specificare ulteriori dettagli
+            </remarks>
+            <param name="query"></param>
+        </member>
+        <member name="M:RockApi.Controllers.IntSumCalculatorController.Post(DomainModel.CQRS.Queries.GetIntSum.GetIntSumQuery)">
+            <summary>
+            Questo è un esempio di commento per un servizio
+            </summary>
+            <remarks>
+            Se necessario, si possono specificare ulteriori dettagli
+            </remarks>
+            <param name="query"></param>
+        </member>
     </members>
 </doc>

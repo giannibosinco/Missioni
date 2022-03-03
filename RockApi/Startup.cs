@@ -9,6 +9,7 @@ using Logging;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using System.IO;
+using Microsoft.AspNetCore.Mvc.Versioning;
 
 namespace RockApi
 {
@@ -41,6 +42,12 @@ namespace RockApi
                     Version = "v1",
                     Description = "Servizi per la gestione delle missioni"
                 });
+                swagger.SwaggerDoc("v2", new OpenApiInfo
+                {
+                    Title = "Gestione Missione BASE",
+                    Version = "v2",
+                    Description = "Servizi per la gestione delle missioni"
+                });
 
                 //swagger.CustomSchemaIds(c => c.FullName);
 
@@ -50,7 +57,23 @@ namespace RockApi
             });
 
 
+            // Versionamento dei servizi
 
+            services.AddApiVersioning(config =>
+            {
+                config.DefaultApiVersion = new ApiVersion(1, 0);
+                config.AssumeDefaultVersionWhenUnspecified = true;
+                config.ReportApiVersions = true;
+                config.ApiVersionReader = new UrlSegmentApiVersionReader();
+            });
+
+            services.AddVersionedApiExplorer(setup =>
+            {
+                setup.GroupNameFormat = "'v'VVV";
+                setup.SubstituteApiVersionInUrl = true;
+            });
+
+            // FINE versionamento dei servizi
 
 
             IntegrateSimpleInjector(services);
@@ -102,6 +125,7 @@ namespace RockApi
             // Enable middleware to serve swagger-ui (HTML, JS, CSS etc.), specifying the Swagger JSON endpoint.
             app.UseSwaggerUI(options => {
                 options.SwaggerEndpoint("/swagger/v1/swagger.json", "Order API V1");
+                options.SwaggerEndpoint("/swagger/v2/swagger.json", "Order API V2");
 
             });
 
