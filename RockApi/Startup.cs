@@ -7,6 +7,8 @@ using Microsoft.Extensions.DependencyInjection;
 using SimpleInjector;
 using Logging;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
+using System.IO;
 
 namespace RockApi
 {
@@ -28,6 +30,28 @@ namespace RockApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            //Swagger
+
+            services.AddSwaggerGen(swagger =>
+            {
+                swagger.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "Gestione Missione BASE",
+                    Version = "v1",
+                    Description = "Servizi per la gestione delle missioni"
+                });
+
+                //swagger.CustomSchemaIds(c => c.FullName);
+
+                var filePath = Path.Combine(System.AppContext.BaseDirectory, "Missioni.xml");
+                swagger.IncludeXmlComments(filePath, includeControllerXmlComments: true);
+
+            });
+
+
+
+
 
             IntegrateSimpleInjector(services);
         }
@@ -65,6 +89,22 @@ namespace RockApi
 
             // UseSimpleInjector() finalizes the integration process.
             app.UseSimpleInjector(container);
+
+            app.UseCors(x => x
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .SetIsOriginAllowed(origin => true) // allow any origin
+                    .AllowCredentials());
+
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS etc.), specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(options => {
+                options.SwaggerEndpoint("/swagger/v1/swagger.json", "Order API V1");
+
+            });
+
 
             if (env.IsDevelopment())
             {
