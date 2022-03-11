@@ -29,7 +29,8 @@ namespace Tests
 
         [Test]
         public void WorksWithAZero()
-        {
+        {     
+
             //var handler = new GetIntSumQueryHandler();
             //var query = new GetIntSumQuery() { First = 10, Second = 0 };
 
