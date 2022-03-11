@@ -14,7 +14,5 @@ namespace Persistenza.Models
         public DateTime? DtFineValidita { get; set; }
         public DateTime? DtIns { get; set; }
         public string User { get; set; }
-
-        public virtual MissioniDipendenti Id { get; set; }
     }
 }

@@ -7,11 +7,6 @@ namespace Persistenza.Models
 {
     public partial class AnagraficaTipiMissione
     {
-        public AnagraficaTipiMissione()
-        {
-            Missionis = new HashSet<Missioni>();
-        }
-
         public Guid IdAnagraficaTipiMissione { get; set; }
         public Guid? CodSedeMissione { get; set; }
         public string DescrizioneMissione { get; set; }
@@ -22,7 +17,5 @@ namespace Persistenza.Models
         public DateTime? DtFineValidita { get; set; }
         public DateTime? DtIns { get; set; }
         public string User { get; set; }
-
-        public virtual ICollection<Missioni> Missionis { get; set; }
     }
 }

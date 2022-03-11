@@ -29,14 +29,15 @@ namespace Persistenza.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseNpgsql("Host=localhost;Database=sipecdb;Username=postgres;Password=Pwd@gbos69");
+                optionsBuilder.UseNpgsql("Host=localhost;Database=postgres;Username=postgres;Password=adminpw");
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasPostgresExtension("uuid-ossp")
-                .HasAnnotation("Relational:Collation", "English_United Kingdom.1252");
+            modelBuilder.HasPostgresExtension("adminpack")
+                .HasPostgresExtension("pgagent")
+                .HasAnnotation("Relational:Collation", "Italian_Italy.1252");
 
             modelBuilder.Entity<AnagraficaTipiMissione>(entity =>
             {
@@ -102,22 +103,16 @@ namespace Persistenza.Models
 
             modelBuilder.Entity<Missioni>(entity =>
             {
-                entity.HasKey(e => e.IdMissione)
+                entity.HasKey(e => new { e.IdMissione, e.DtIns })
                     .HasName("Missioni_PK");
 
                 entity.ToTable("Missioni", "Missioni");
 
-                entity.HasIndex(e => e.IdCausaliMissione, "MissioniDipendenti_UK");
+                entity.Property(e => e.IdMissione).HasColumnName("idMissione");
 
-                entity.Property(e => e.IdMissione)
-                    .ValueGeneratedNever()
-                    .HasColumnName("idMissione");
+                entity.Property(e => e.DtIns).HasColumnName("dtIns");
 
                 entity.Property(e => e.CodEvento).HasColumnName("codEvento");
-
-                entity.Property(e => e.CodSedeAmmDestinazione).HasColumnName("codSedeAmmDestinazione");
-
-                entity.Property(e => e.CodSedeAmmPartenza).HasColumnName("codSedeAmmPartenza");
 
                 entity.Property(e => e.CodSedeMissione).HasColumnName("codSedeMissione");
 
@@ -131,8 +126,6 @@ namespace Persistenza.Models
 
                 entity.Property(e => e.DtInizioValidita).HasColumnName("dtInizioValidita");
 
-                entity.Property(e => e.DtIns).HasColumnName("dtIns");
-
                 entity.Property(e => e.EstremiAutorizzazione)
                     .HasMaxLength(130)
                     .HasColumnName("estremiAutorizzazione");
@@ -143,8 +136,6 @@ namespace Persistenza.Models
                     .IsRequired()
                     .HasColumnName("flSedeVvf")
                     .HasDefaultValueSql("true");
-
-                entity.Property(e => e.IdAnagraficaTipiMissione).HasColumnName("idAnagraficaTipiMissione");
 
                 entity.Property(e => e.IdCausaliMissione).HasColumnName("idCausaliMissione");
 
@@ -173,12 +164,6 @@ namespace Persistenza.Models
                     .HasMaxLength(40)
                     .HasColumnName("user");
 
-                //entity.HasOne(d => d.IdAnagraficaTipiMissioneNavigation)
-                //    .WithMany(p => p.Missionis)
-                //    .HasForeignKey(d => d.IdAnagraficaTipiMissione)
-                //    .OnDelete(DeleteBehavior.ClientSetNull)
-                //    .HasConstraintName("Missioni_FK2");
-
                 entity.HasOne(d => d.IdCausaliMissioneNavigation)
                     .WithMany(p => p.Missionis)
                     .HasForeignKey(d => d.IdCausaliMissione)
@@ -192,14 +177,14 @@ namespace Persistenza.Models
 
             modelBuilder.Entity<MissioniDipendenti>(entity =>
             {
-                entity.HasKey(e => new { e.IdMissione, e.IdDipendente })
+                entity.HasKey(e => e.IdMissioneDipendente)
                     .HasName("MissioniDipendenti_PK");
 
                 entity.ToTable("MissioniDipendenti", "Missioni");
 
-                entity.Property(e => e.IdMissione).HasColumnName("idMissione");
-
-                entity.Property(e => e.IdDipendente).HasColumnName("idDipendente");
+                entity.Property(e => e.IdMissioneDipendente)
+                    .ValueGeneratedNever()
+                    .HasColumnName("idMissioneDipendente");
 
                 entity.Property(e => e.CodFiscale)
                     .HasMaxLength(16)
@@ -219,21 +204,19 @@ namespace Persistenza.Models
                     .HasColumnName("fLavorato")
                     .HasDefaultValueSql("false");
 
+                entity.Property(e => e.IdDipendente).HasColumnName("idDipendente");
+
                 entity.Property(e => e.IdMansione)
                     .IsRequired()
                     .HasMaxLength(1)
                     .HasColumnName("idMansione")
                     .HasDefaultValueSql("'N'::character varying");
 
+                entity.Property(e => e.IdMissione).HasColumnName("idMissione");
+
                 entity.Property(e => e.User)
                     .HasMaxLength(40)
                     .HasColumnName("user");
-
-                entity.HasOne(d => d.IdMissioneNavigation)
-                    .WithMany(p => p.MissioniDipendentis)
-                    .HasForeignKey(d => d.IdMissione)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("MissioniDipendenti_FK");
             });
 
             modelBuilder.Entity<MissioniTransiti>(entity =>
@@ -258,12 +241,6 @@ namespace Persistenza.Models
                 entity.Property(e => e.User)
                     .HasMaxLength(40)
                     .HasColumnName("user");
-
-                entity.HasOne(d => d.Id)
-                    .WithMany(p => p.MissioniTransitis)
-                    .HasForeignKey(d => new { d.IdMissione, d.IdDipendente })
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("MissioniTransiti_FK");
             });
 
             modelBuilder.Entity<TipologieMissione>(entity =>

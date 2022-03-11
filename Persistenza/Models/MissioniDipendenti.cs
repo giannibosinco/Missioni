@@ -7,11 +7,7 @@ namespace Persistenza.Models
 {
     public partial class MissioniDipendenti
     {
-        public MissioniDipendenti()
-        {
-            MissioniTransitis = new HashSet<MissioniTransiti>();
-        }
-
+        public Guid IdMissioneDipendente { get; set; }
         public Guid IdMissione { get; set; }
         public Guid IdDipendente { get; set; }
         public string CodFiscale { get; set; }
@@ -23,8 +19,5 @@ namespace Persistenza.Models
         public DateTime? DtFineValidita { get; set; }
         public DateTime? DtIns { get; set; }
         public string User { get; set; }
-
-        public virtual Missioni IdMissioneNavigation { get; set; }
-        public virtual ICollection<MissioniTransiti> MissioniTransitis { get; set; }
     }
 }

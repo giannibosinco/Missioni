@@ -43,7 +43,7 @@ namespace Persistenza
             miss.DtIns = DateTime.Now;
             miss.DtInizioValidita = DateTime.Now;
             miss.CodEvento = missione.CodEvento;
-            miss.CodSedeAmmDestinazione = missione.CodSedeAmmDestinazione;
+            //miss.CodSedeAmmDestinazione = missione.CodSedeAmmDestinazione;
             miss.IdCausaliMissione = missione.IdCausaliMissione;
             miss.IdTipologiaMissione = missione.IdTipologiaMissione;
 
