@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DomainModel.CQRS.Commands.AnagraficaMissioni.InserimentoMissione
+namespace DomainModel.CQRS.Queries.Missioni
 {
-    public class AddMissioneCommand
+    public class GetMissioniQueryResult
     {
         public Guid IdMissione { get; set; }
         public Guid? CodSedeMissione { get; set; }
@@ -21,10 +21,5 @@ namespace DomainModel.CQRS.Commands.AnagraficaMissioni.InserimentoMissione
         public bool? FlSedeVvf { get; set; }
         public long? IdCausaliMissione { get; set; }
         public DateTime? DataInizioMissione { get; set; }
-        public DateTime DtInizioValidita { get; set; }
-        public DateTime? DtFineValidita { get; set; }
-        public DateTime? DtIns { get; set; }
-        public string User { get; set; }
-
     }
 }

@@ -9,7 +9,6 @@ namespace MissioniBE.DTO
     public class AddMissioneCommand_DTO
     {
         public Guid? CodSedeMissione { get; set; }
-        public Guid IdAnagraficaTipiMissione { get; set; }
         public DateTime DataOraInizioMissione { get; set; }
         public DateTime DataOraFineMissione { get; set; }
         public string LocalitaPartenza { get; set; }

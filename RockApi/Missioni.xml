@@ -15,6 +15,56 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:MissioniBE.Controllers.MissioniController">
+            <summary>
+            Servizi per la la tabella Missioni
+            </summary>
+        </member>
+        <member name="M:MissioniBE.Controllers.MissioniController.Get">
+            <summary>
+            Servizio per il recupero delle missioni
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MissioniBE.Controllers.MissioniController.Post(MissioniBE.DTO.AddMissioneCommand_DTO)">
+            <summary>
+            Servizio per la scrittura delle Missioni
+            </summary>
+        </member>
+        <member name="T:MissioniBE.Controllers.MissioniDipendentiController">
+            <summary>
+            Servizi per la la tabella MissioniDipendenti
+            </summary>
+        </member>
+        <member name="M:MissioniBE.Controllers.MissioniDipendentiController.Get">
+            <summary>
+            Servizio per il recupero delle missioniDipendenti
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MissioniBE.Controllers.MissioniDipendentiController.GetDipendentiMissione(System.Guid)">
+            <summary>
+            Servizio per il recupero dei Dipendenti assegnati ad una missione specifica
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MissioniBE.Controllers.MissioniDipendentiController.Post(MissioniBE.DTO.AddMissioniDipendentiCommand_DTO)">
+            <summary>
+            Servizio per la scrittura delle missioniDipendenti
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:MissioniBE.Controllers.TipologiaMissioneController">
+            <summary>
+            Servizi per la tipologica TipologiaMissione
+            </summary>
+        </member>
+        <member name="M:MissioniBE.Controllers.TipologiaMissioneController.Get">
+            <summary>
+            Servizio per il recupero delle tipologie missione
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:RockApi.Controllers.IntSumCalculatorController">
             <summary>
             Questo è un esempio di commento per il controller
